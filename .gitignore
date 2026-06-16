@@ -39,14 +39,6 @@ coverage/
 .mypy_cache/
 .ruff_cache/
 
-# Machine learning artifacts
-*.pt
-*.pth
-*.onnx
-*.engine
-runs/
-datasets/
-
 # OS / editor files
 .DS_Store
 Thumbs.db

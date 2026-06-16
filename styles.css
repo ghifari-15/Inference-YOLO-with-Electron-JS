@@ -1,0 +1,296 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+  background: #000000;
+  color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #000000;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #ffffff;
+  background: #000000;
+  padding: 12px;
+}
+
+.brand {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-button {
+  width: auto;
+  min-width: 150px;
+}
+
+.nav-button.active {
+  background: #ffffff;
+  color: #000000;
+}
+
+.app-shell {
+  min-height: calc(100vh - 58px);
+  padding: 12px;
+}
+
+.view {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.panel {
+  border: 1px solid #ffffff;
+  background: #000000;
+  padding: 18px;
+}
+
+.controls-panel {
+  align-self: start;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #bdbdbd;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+.subtitle {
+  color: #d8d8d8;
+  line-height: 1.55;
+}
+
+.field,
+.upload-box {
+  display: grid;
+  gap: 8px;
+  margin: 24px 0 12px;
+}
+
+.field > span,
+.upload-box > span {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.upload-box {
+  border: 1px dashed #ffffff;
+  padding: 18px;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.upload-box input {
+  display: none;
+}
+
+.upload-box small {
+  color: #bdbdbd;
+}
+
+.upload-box:hover small {
+  color: #000000;
+}
+
+select,
+button {
+  width: 100%;
+  border: 1px solid #ffffff;
+  border-radius: 0;
+  padding: 12px 14px;
+  background: #000000;
+  color: #ffffff;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+button:hover:not(:disabled) {
+  background: #ffffff;
+  color: #000000;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.status {
+  margin: 14px 0 0;
+  min-height: 24px;
+  color: #bdbdbd;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.status.success,
+.status.error,
+.status.loading {
+  color: #ffffff;
+}
+
+.preview-panel {
+  min-height: 480px;
+  padding: 0;
+}
+
+.preview-wrap {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  place-items: center;
+  overflow: hidden;
+  background: #000000;
+}
+
+#photoPreview,
+#livePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#photoPreview:not([src]) {
+  display: none;
+}
+
+#photoOverlay,
+#liveOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.results-panel {
+  grid-column: 1 / -1;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+#photoCountBadge,
+#liveCountBadge {
+  border: 1px solid #ffffff;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.detections {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.detections.empty {
+  display: block;
+  color: #bdbdbd;
+}
+
+.detection-card {
+  display: grid;
+  gap: 4px;
+  border: 1px solid #ffffff;
+  padding: 10px;
+  background: #000000;
+}
+
+.detection-card span,
+.detection-card small {
+  color: #d8d8d8;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .nav-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-button {
+    min-width: 0;
+  }
+
+  .view {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-panel,
+  .preview-wrap {
+    min-height: 360px;
+  }
+}

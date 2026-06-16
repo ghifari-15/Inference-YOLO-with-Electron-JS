@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YOLO Detection</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="brand">YOLO Detection</div>
+      <nav class="nav-menu" aria-label="Detection mode">
+        <button id="photoTab" class="nav-button" type="button" data-view="photo">Detect by Photo</button>
+        <button id="liveTab" class="nav-button active" type="button" data-view="live">Detect Live</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section id="photoView" class="view hidden" aria-labelledby="photoTab">
+        <section class="panel controls-panel">
+          <p class="eyebrow">Image Mode</p>
+          <h1>Detect by Photo</h1>
+          <p class="subtitle">Upload foto, kirim ke FastAPI, lalu lihat hasil deteksi dari model aktif.</p>
+
+          <label class="upload-box" for="imageInput">
+            <input id="imageInput" type="file" accept="image/*" />
+            <span>Pilih Foto</span>
+            <small>JPG, PNG, atau format gambar lain</small>
+          </label>
+
+          <button id="predictButton" type="button" disabled>Detect Photo</button>
+          <p id="photoStatus" class="status">Pilih foto terlebih dahulu.</p>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="preview-wrap">
+            <img id="photoPreview" alt="Preview foto" />
+            <canvas id="photoOverlay"></canvas>
+          </div>
+        </section>
+
+        <section class="panel results-panel">
+          <div class="results-header">
+            <h2>Hasil Deteksi Foto</h2>
+            <span id="photoCountBadge">0 objek</span>
+          </div>
+          <div id="photoDetections" class="detections empty">Belum ada hasil.</div>
+        </section>
+      </section>
+
+      <section id="liveView" class="view" aria-labelledby="liveTab">
+        <section class="panel controls-panel">
+          <p class="eyebrow">Live Mode</p>
+          <h1>Detect Live</h1>
+          <p class="subtitle">Pilih source video, gunakan <strong>OBS Virtual Camera</strong>, lalu kirim frame ke FastAPI melalui WebSocket.</p>
+
+          <label class="field" for="cameraSelect">
+            <span>Video Source</span>
+            <select id="cameraSelect"></select>
+          </label>
+
+          <div class="actions">
+            <button id="refreshButton" type="button">Refresh</button>
+            <button id="streamButton" type="button">Start</button>
+          </div>
+
+          <p id="liveStatus" class="status">Pastikan backend FastAPI berjalan di port 8000 dan OBS Virtual Camera aktif.</p>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="preview-wrap">
+            <video id="livePreview" autoplay muted playsinline></video>
+            <canvas id="liveOverlay"></canvas>
+          </div>
+        </section>
+
+        <section class="panel results-panel">
+          <div class="results-header">
+            <h2>Hasil Deteksi Live</h2>
+            <span id="liveCountBadge">0 objek</span>
+          </div>
+          <div id="liveDetections" class="detections empty">Belum ada stream.</div>
+        </section>
+      </section>
+    </main>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
